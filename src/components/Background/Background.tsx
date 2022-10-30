@@ -1,0 +1,18 @@
+import { View } from 'react-native';
+
+import { styles } from './styles';
+
+interface Props {
+    children: React.ReactNode;
+}
+
+const Background = ({ children }: Props): JSX.Element => {
+    return (
+        <View style={styles.container}>
+            {children}
+        </View>
+    );
+}
+
+export default Background;
+
