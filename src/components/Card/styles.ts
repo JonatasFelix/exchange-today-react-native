@@ -35,4 +35,8 @@ export const styles = StyleSheet.create({
         alignContent: 'center',
     },
 
+
+    fontColor: {
+        color: '#ffffff',
+    },
 });

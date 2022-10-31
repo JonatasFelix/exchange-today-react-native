@@ -20,5 +20,14 @@ export const styles = StyleSheet.create({
         textTransform: "uppercase",
         fontWeight: "bold",
         letterSpacing: 2,
-    }
+    },
+
+    button: {
+        width: 40,
+        height: 40,
+        backgroundColor: "#D9D9D9",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 10,
+    },
 });

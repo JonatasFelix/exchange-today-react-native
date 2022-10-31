@@ -1,35 +1,26 @@
 import { View, Text } from 'react-native';
+import { CurrencyLocation, CurrencySimbol as Simbol } from '../../@types/Currency';
 import { styles } from './styles';
 
-
-export enum Currency {
-    USD = 'USD',
-    EUR = 'EUR',
-    GBP = 'GBP',
-    BTC = 'BTC',
-    BRL = 'BRL',
-};
-
-
-const currencySimbol = (input: Currency): string => {
+const currencySimbol = (input: string): string => {
     switch (input) {
-        case Currency.USD:
-            return '$';
-        case Currency.EUR:
-            return '€';
-        case Currency.GBP:
-            return '£';
-        case Currency.BTC:
-            return '₿';
-        case Currency.BRL:
-            return 'R$';
+        case CurrencyLocation.USD:
+            return Simbol.USD;
+        case CurrencyLocation.EUR:
+            return Simbol.EUR;
+        case CurrencyLocation.GBP:
+            return Simbol.GBP;
+        case CurrencyLocation.BTC:
+            return Simbol.BTC;
+        case CurrencyLocation.BRL:
+            return Simbol.BRL;
         default:
-            return '';
+            return "";
     }
 };
 
 interface Props {
-    currency: Currency;
+    currency: string;
     name: string;
     amount: string;
 }
@@ -45,12 +36,11 @@ const Card = ({ currency, amount, name }: Props): JSX.Element => {
 
                 <View style={styles.currencySimbol}>
                     <Text>{currencySimbol(currency)}</Text>
-
                 </View>
 
                 <View>
-                    <Text>{name.split('/')[0]}</Text>
-                    <Text>{currencySimbol(currency)} 1,00</Text>
+                    <Text style={styles.fontColor}>{name.split('/')[0]}</Text>
+                    <Text style={styles.fontColor}>{currencySimbol(currency)} 1,00</Text>
                 </View>
 
             </View>

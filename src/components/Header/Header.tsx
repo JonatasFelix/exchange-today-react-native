@@ -1,6 +1,7 @@
-import { View, Image, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-// import Logo from '../../assets/imgs/logo.png';
 
 interface Props {
     title: string;
@@ -8,10 +9,22 @@ interface Props {
 
 const Header = ({title}: Props) => {
 
+    const navigation = useNavigation();
+
+    const ShowBackButton = () => {
+        return (
+            <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+                <Image source={require('../../assets/imgs/back-icon.png')} />
+            </TouchableOpacity>
+    
+        );
+    };
+
     return (
         <View style={styles.container}>
             <Image source={require('../../assets/imgs/logo.png')} />
             <Text style={styles.text}>{title}</Text>
+            {title !== 'Cotação' && <ShowBackButton />}
         </View>
     );
 

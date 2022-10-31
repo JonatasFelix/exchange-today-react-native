@@ -1,9 +1,7 @@
+import React from 'react';
 import { StatusBar } from 'react-native';
 import Background from './src/components/Background/Background';
-import Header from './src/components/Header/Header';
-
-import CotacaoScreen from './src/screens/CotacaoScreen/CotacaoScreen';
-
+import Router from './src/Routers/Router';
 
 export default function App() {
   return (
@@ -14,8 +12,8 @@ export default function App() {
         backgroundColor="transparent"   // COR DE FUNDO
         translucent                     // TRANSPARÊNCIA
       />
-      
-      <CotacaoScreen />
+
+      <Router />
 
     </Background>
   );
