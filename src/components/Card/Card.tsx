@@ -28,11 +28,8 @@ const Card = ({ currency, amount, name }: Props): JSX.Element => {
 
             </View>
 
-
-
             <Text style={styles.actualValue}>R$: {amountFormatted}</Text>
-
-
+            
         </View>
     );
 }

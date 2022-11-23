@@ -5,30 +5,30 @@ import Header from "../../components/Header/Header";
 import SelectCurrency from "../../components/SelectCurrency/SelectCurrency";
 import { currencySymbol, CurrencysNames } from "../../@types/Currency";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
+import { getConversao } from "../../services/getConversao";
 
 const ConversaoScreen = () => {
 
-    const [alert, setAlert] = useState(false);
+    const [alert, setAlert] = useState<boolean>(false);
 
-    const [selectDe, setSelectDe] = useState("");
-    const [selectPara, setSelectPara] = useState("");
-    const [value, setValue] = useState("");
-    const [result, setResult] = useState("");
+    const [selectDe, setSelectDe] = useState<string>("");
+    const [selectPara, setSelectPara] = useState<string>("");
+    const [value, setValue] = useState<string>("");
+    const [result, setResult] = useState<string | number>("");
 
-    const symbolResult = currencySymbol(CurrencysNames.find((item) => item.name === selectPara)?.value || "");
+    const symbolResult: string = currencySymbol(
+        CurrencysNames.find((item) => item.name === selectPara)?.value || "");
 
 
-    const handleConvert = () => {
+    const handleConvert = async () => {
         const currencyDe = selectDe;
         const currencyPara = selectPara;
-        const valueConverted = value.toString().replace(",", ".");
 
         if (currencyDe && currencyPara && value) {
-            let result: number | string = (parseFloat(valueConverted) * 5).toFixed(2);
-            result = result.replace(".", ",");
-            setResult(result);
+            const de = CurrencysNames.find((item) => item.name === currencyDe)?.value;
+            const para = CurrencysNames.find((item) => item.name === currencyPara)?.value;
+            await getConversao(setResult, de, para)
         } else {
-            // Alert.alert("Preencha todos os campos");
             setAlert(true);
         }
 
@@ -80,7 +80,7 @@ const ConversaoScreen = () => {
                 {result && (
                     <View style={styles.boxResult}>
                         <Text style={styles.fontColor}>Resultado</Text>
-                        <Text style={styles.fontColor}>{symbolResult}: {result}</Text>
+                        <Text style={styles.fontColor}>{symbolResult}: {Number(result) * Number(value)}</Text>
                     </View>
                 )}
 
